@@ -1,0 +1,269 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package baseball;
+
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author PCP
+ */
+public class Class_Jogadores {
+    
+    private String Nome_Jogador;
+    private String Numero_Camisa;
+    private String Posicao_Jogador;
+    private int N_Batedor;
+    private int Pontuacao;
+    private String Equipe;
+    private JLabel label_jogador;
+    private int Posicao_X_Defesa;
+    private int Posicao_Y_Defesa;
+    private int Posicao_X_Ataque;
+    private int Posicao_y_Ataque;
+    private String Nome_Equipe1;
+    private String Nome_Equipe2;
+    private double N_Arremessos;
+    private double N_Strikes;
+    private double N_Balls;
+    private double N_Rebatidas_Simples;
+    private double N_Rebatidas_Duplas;
+    private double N_Rebatidas_Triplas;
+    private double N_Rebatidas_HR;
+    private double AB;
+    private double HIT;
+    private double BB;
+    private double HPB;
+    private double SF;
+    private double OBP;
+    private double Total_Bases;
+    private double SLG;
+
+    public double getN_Arremessos() {
+        return N_Arremessos;
+    }
+
+    public void setN_Arremessos(double N_Arremessos) {
+        this.N_Arremessos = N_Arremessos;
+    }
+
+    public double getN_Strikes() {
+        return N_Strikes;
+    }
+
+    public void setN_Strikes(double N_Strikes) {
+        this.N_Strikes = N_Strikes;
+    }
+
+    public double getN_Balls() {
+        return N_Balls;
+    }
+
+    public void setN_Balls(double N_Balls) {
+        this.N_Balls = N_Balls;
+    }
+
+    public double getN_Rebatidas_Simples() {
+        return N_Rebatidas_Simples;
+    }
+
+    public void setN_Rebatidas_Simples(double N_Rebatidas_Simples) {
+        this.N_Rebatidas_Simples = N_Rebatidas_Simples;
+    }
+
+    public double getN_Rebatidas_Duplas() {
+        return N_Rebatidas_Duplas;
+    }
+
+    public void setN_Rebatidas_Duplas(double N_Rebatidas_Duplas) {
+        this.N_Rebatidas_Duplas = N_Rebatidas_Duplas;
+    }
+
+    public double getN_Rebatidas_Triplas() {
+        return N_Rebatidas_Triplas;
+    }
+
+    public void setN_Rebatidas_Triplas(double N_Rebatidas_Triplas) {
+        this.N_Rebatidas_Triplas = N_Rebatidas_Triplas;
+    }
+
+    public double getN_Rebatidas_HR() {
+        return N_Rebatidas_HR;
+    }
+
+    public void setN_Rebatidas_HR(double N_Rebatidas_HR) {
+        this.N_Rebatidas_HR = N_Rebatidas_HR;
+    }
+
+    public double getAB() {
+        return AB;
+    }
+
+    public void setAB(double AB) {
+        this.AB = AB;
+    }
+
+    public double getHIT() {
+        return HIT;
+    }
+
+    public void setHIT(double HIT) {
+        this.HIT = HIT;
+    }
+
+    public double getBB() {
+        return BB;
+    }
+
+    public void setBB(double BB) {
+        this.BB = BB;
+    }
+
+    public double getHPB() {
+        return HPB;
+    }
+
+    public void setHPB(double HPB) {
+        this.HPB = HPB;
+    }
+
+    public double getSF() {
+        return SF;
+    }
+
+    public void setSF(double SF) {
+        this.SF = SF;
+    }
+    
+    
+    private double getOBP(){
+        OBP = (HIT + BB + HPB) / (AB + BB + HPB + SF);
+        return this.OBP;
+    }
+    public double getTotal_Bases(){
+        this.Total_Bases = N_Rebatidas_Simples + (2 * N_Rebatidas_Duplas) + (3 * N_Rebatidas_Triplas) + (4 * N_Rebatidas_HR);
+        return Total_Bases;
+    }
+    public double getSLG(){
+        this.SLG = getTotal_Bases() / this.AB;
+        return SLG;
+    }
+
+    public String getNome_Equipe1() {
+        return Nome_Equipe1;
+    }
+
+    public void setNome_Equipe1(String Nome_Equipe1) {
+        this.Nome_Equipe1 = Nome_Equipe1;
+    }
+
+    public String getNome_Equipe2() {
+        return Nome_Equipe2;
+    }
+
+    public void setNome_Equipe2(String Nome_Equipe2) {
+        this.Nome_Equipe2 = Nome_Equipe2;
+    }
+
+    public int getPosicao_X_Defesa() {
+        return Posicao_X_Defesa;
+    }
+
+    public void setPosicao_X_Defesa(int Posicao_X_Defesa) {
+        this.Posicao_X_Defesa = Posicao_X_Defesa;
+    }
+
+    public int getPosicao_Y_Defesa() {
+        return Posicao_Y_Defesa;
+    }
+
+    public void setPosicao_Y_Defesa(int Posicao_Y_Defesa) {
+        this.Posicao_Y_Defesa = Posicao_Y_Defesa;
+    }
+
+    public int getPosicao_X_Ataque() {
+        return Posicao_X_Ataque;
+    }
+
+    public void setPosicao_X_Ataque(int Posicao_X_Ataque) {
+        this.Posicao_X_Ataque = Posicao_X_Ataque;
+    }
+
+    public int getPosicao_y_Ataque() {
+        return Posicao_y_Ataque;
+    }
+
+    public void setPosicao_y_Ataque(int Posicao_y_Ataque) {
+        this.Posicao_y_Ataque = Posicao_y_Ataque;
+    }
+
+    public JLabel getLabel_jogador() {
+        return label_jogador;
+    }
+
+    public void setLabel_jogador(JLabel label_jogador) {
+        this.label_jogador = label_jogador;
+    }
+    
+    public Class_Jogadores(String nome, String numero, String pos, int n_bater, String equipe){
+        this.Nome_Jogador = nome;
+        this.Numero_Camisa = numero;
+        this.Posicao_Jogador = pos;
+        this.N_Batedor = n_bater;
+        this.Pontuacao = 0;
+        this.Equipe = equipe;
+    }
+
+    public String getNome_Jogador() {
+        return Nome_Jogador;
+    }
+
+    public void setNome_Jogador(String Nome_Jogador) {
+        this.Nome_Jogador = Nome_Jogador;
+    }
+
+    public String getNumero_Camisa() {
+        return Numero_Camisa;
+    }
+
+    public void setNumero_Camisa(String Numero_Camisa) {
+        this.Numero_Camisa = Numero_Camisa;
+    }
+
+    public String getPosicao_Jogador() {
+        return Posicao_Jogador;
+    }
+
+    public void setPosicao_Jogador(String Posicao_Jogador) {
+        this.Posicao_Jogador = Posicao_Jogador;
+    }
+
+    public int getN_Batedor() {
+        return N_Batedor;
+    }
+
+    public void setN_Batedor(int N_Batedor) {
+        this.N_Batedor = N_Batedor;
+    }
+
+    public int getPontuacao() {
+        return Pontuacao;
+    }
+
+    public void setPontuacao(int Pontuacao) {
+        this.Pontuacao = Pontuacao;
+    }
+
+    public String getEquipe() {
+        return Equipe;
+    }
+
+    public void setEquipe(String Equipe) {
+        this.Equipe = Equipe;
+    }
+    
+    
+}
