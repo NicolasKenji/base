@@ -411,7 +411,7 @@ public class Partida extends javax.swing.JFrame {
     public void Verificar_Strikes(){
         if(partida.getStrikes() == 3){
             jogadores[getPitcher_Do_Inning()].setN_Strikes_Outs_1();
-            partida.setZerarStrikes();
+            partida.setZerarBalls();
             partida.setOuts();
             if(Equipe_Def == 0){
                 Eliminar_Batedor_Equipe1();
@@ -436,6 +436,7 @@ public class Partida extends javax.swing.JFrame {
             jogadores[partida.getAtacador_Equipe0()].setHPB();
             Batida_Equipe0();
         }
+        Atualizar_Pontuacao();
     }
     public String[] getTipos_Jogadas() {
         Tipos_Jogadas[0] = "Arremesso";
