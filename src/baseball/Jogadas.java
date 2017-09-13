@@ -65,7 +65,6 @@ public class Jogadas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/rebatida_img.png"))); // NOI18N
         jButton1.setText("Rebatida");
@@ -75,7 +74,6 @@ public class Jogadas extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 255, 0));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/defesa_img.png"))); // NOI18N
         jButton2.setText("Defesa");
@@ -85,7 +83,6 @@ public class Jogadas extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 255, 0));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/falha_img.png"))); // NOI18N
         jButton3.setText("Falha");
@@ -95,7 +92,6 @@ public class Jogadas extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(51, 255, 0));
         jButton4.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/acao_img.png"))); // NOI18N
         jButton4.setText("Ação");
