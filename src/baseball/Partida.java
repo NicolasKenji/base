@@ -748,7 +748,7 @@ public class Partida extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -801,7 +801,7 @@ public class Partida extends javax.swing.JFrame {
         );
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setBackground(new java.awt.Color(255, 51, 51));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -854,7 +854,7 @@ public class Partida extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setBackground(new java.awt.Color(255, 51, 51));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -892,7 +892,7 @@ public class Partida extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setBackground(new java.awt.Color(255, 51, 51));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -993,7 +993,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         jPanel6.setBackground(new java.awt.Color(0, 153, 255));
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel_JogadorDetalhes_1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel_JogadorDetalhes_1.setText("jLabel3");
@@ -1068,7 +1068,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel6.setBounds(0, 0, 215, 240);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel_JogadorDetalhes_21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel_JogadorDetalhes_21.setText("jLabel3");
@@ -1148,7 +1148,7 @@ public class Partida extends javax.swing.JFrame {
 
         jPanel_Campo.setLayout(null);
 
-        jJogador9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador9.setText("99");
         jJogador9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1158,7 +1158,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador9);
         jJogador9.setBounds(30, 360, 50, 23);
 
-        jJogador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador1.setText("10");
         jJogador1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1168,7 +1168,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador1);
         jJogador1.setBounds(30, 240, 50, 23);
 
-        jJogador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador2.setText("22");
         jJogador2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1178,7 +1178,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador2);
         jJogador2.setBounds(80, 240, 50, 23);
 
-        jJogador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador3.setText("33");
         jJogador3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1188,7 +1188,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador3);
         jJogador3.setBounds(30, 270, 50, 23);
 
-        jJogador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador4.setText("44");
         jJogador4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1198,7 +1198,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador4);
         jJogador4.setBounds(80, 270, 50, 23);
 
-        jJogador5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador5.setText("55");
         jJogador5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1208,7 +1208,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador5);
         jJogador5.setBounds(30, 300, 50, 23);
 
-        jJogador8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador8.setText("88");
         jJogador8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1218,7 +1218,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador8);
         jJogador8.setBounds(80, 330, 50, 23);
 
-        jJogador6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador6.setText("66");
         jJogador6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1228,7 +1228,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador6);
         jJogador6.setBounds(80, 300, 50, 23);
 
-        jJogador7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola azul.png"))); // NOI18N
+        jJogador7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola azul.png"))); // NOI18N
         jJogador7.setText("77");
         jJogador7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1238,7 +1238,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador7);
         jJogador7.setBounds(30, 330, 50, 23);
 
-        jJogador21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador21.setText("00");
         jJogador21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1248,7 +1248,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador21);
         jJogador21.setBounds(560, 240, 50, 23);
 
-        jJogador25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador25.setText("00");
         jJogador25.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1258,7 +1258,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador25);
         jJogador25.setBounds(560, 300, 50, 23);
 
-        jJogador26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador26.setText("00");
         jJogador26.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1268,7 +1268,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador26);
         jJogador26.setBounds(610, 300, 50, 23);
 
-        jJogador27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador27.setText("00");
         jJogador27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1278,7 +1278,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador27);
         jJogador27.setBounds(560, 330, 50, 23);
 
-        jJogador28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador28.setText("00");
         jJogador28.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1288,7 +1288,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador28);
         jJogador28.setBounds(610, 330, 50, 23);
 
-        jJogador29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador29.setText("00");
         jJogador29.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1298,7 +1298,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador29);
         jJogador29.setBounds(560, 360, 50, 23);
 
-        jJogador22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador22.setText("00");
         jJogador22.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1308,7 +1308,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador22);
         jJogador22.setBounds(610, 240, 50, 23);
 
-        jJogador23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador23.setText("00");
         jJogador23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1318,7 +1318,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador23);
         jJogador23.setBounds(560, 270, 50, 23);
 
-        jJogador24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/bola vermelha.png"))); // NOI18N
+        jJogador24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/bola vermelha.png"))); // NOI18N
         jJogador24.setText("00");
         jJogador24.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1328,8 +1328,8 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jJogador24);
         jJogador24.setBounds(610, 270, 50, 23);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/fundo_baseball_1.jpg"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/img/fundo_baseball_1.jpg"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_Campo.add(jLabel2);
         jLabel2.setBounds(130, 0, 404, 404);
 

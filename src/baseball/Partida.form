@@ -774,7 +774,7 @@
         <Component class="javax.swing.JLabel" name="jJogador9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="99"/>
           </Properties>
@@ -790,7 +790,7 @@
         <Component class="javax.swing.JLabel" name="jJogador1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="10"/>
           </Properties>
@@ -806,7 +806,7 @@
         <Component class="javax.swing.JLabel" name="jJogador2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="22"/>
           </Properties>
@@ -822,7 +822,7 @@
         <Component class="javax.swing.JLabel" name="jJogador3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="33"/>
           </Properties>
@@ -838,7 +838,7 @@
         <Component class="javax.swing.JLabel" name="jJogador4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="44"/>
           </Properties>
@@ -854,7 +854,7 @@
         <Component class="javax.swing.JLabel" name="jJogador5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="55"/>
           </Properties>
@@ -870,7 +870,7 @@
         <Component class="javax.swing.JLabel" name="jJogador8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="88"/>
           </Properties>
@@ -886,7 +886,7 @@
         <Component class="javax.swing.JLabel" name="jJogador6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="66"/>
           </Properties>
@@ -902,7 +902,7 @@
         <Component class="javax.swing.JLabel" name="jJogador7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola azul.png"/>
+              <Image iconType="3" name="/baseball/img/bola azul.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="77"/>
           </Properties>
@@ -918,7 +918,7 @@
         <Component class="javax.swing.JLabel" name="jJogador21">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -934,7 +934,7 @@
         <Component class="javax.swing.JLabel" name="jJogador25">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -950,7 +950,7 @@
         <Component class="javax.swing.JLabel" name="jJogador26">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -966,7 +966,7 @@
         <Component class="javax.swing.JLabel" name="jJogador27">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -982,7 +982,7 @@
         <Component class="javax.swing.JLabel" name="jJogador28">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -998,7 +998,7 @@
         <Component class="javax.swing.JLabel" name="jJogador29">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -1014,7 +1014,7 @@
         <Component class="javax.swing.JLabel" name="jJogador22">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -1030,7 +1030,7 @@
         <Component class="javax.swing.JLabel" name="jJogador23">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -1046,7 +1046,7 @@
         <Component class="javax.swing.JLabel" name="jJogador24">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/bola vermelha.png"/>
+              <Image iconType="3" name="/baseball/img/bola vermelha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="00"/>
           </Properties>
@@ -1062,7 +1062,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/baseball/fundo_baseball_1.jpg"/>
+              <Image iconType="3" name="/baseball/img/fundo_baseball_1.jpg"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
