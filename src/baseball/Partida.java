@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class Partida extends javax.swing.JFrame {
-    public String[] Tipos_Jogadas = new String[4];
+    public String[] Tipos_Jogadas = new String[5];
     public String[] Tipos_Arremessos = new String[3];
     private Class_Partida partida;
     private Class_Jogadores[] jogadores;
@@ -51,7 +51,14 @@ public class Partida extends javax.swing.JFrame {
     private int AUX4;
     private int AUY4;
     DecimalFormat df;
+    private int Pitcher_Do_Inning;
     
+    public void setPitcher_Do_Inning(int Pitcher_Do_Inning){
+        this.Pitcher_Do_Inning = Pitcher_Do_Inning;
+    }
+    public int getPitcher_Do_Inning(){
+        return this.Pitcher_Do_Inning;
+    }
     public Partida(Class_Jogadores[] jogadores, Class_Equipes[] equipes, String Defesa) {
         initComponents();
         this.df = new DecimalFormat("0.000");
@@ -352,15 +359,21 @@ public class Partida extends javax.swing.JFrame {
         }
     }
     public void Defender_Equipe0(){
-    Equipe_Def = 1;
+    Equipe_Def = 0;
     for(int i=0;i<=8;i++){
         jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
+        if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
+            setPitcher_Do_Inning(i);
+        }
     }
 }
     public void Defender_Equipe1(){
-        Equipe_Def = 0;
+        Equipe_Def = 1;
         for(int i=9;i<=17;i++){
             jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
+            if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
+            setPitcher_Do_Inning(i);     
+        }
         }
     }
     public void Atualizar_Pontuacao(){
@@ -372,12 +385,13 @@ public class Partida extends javax.swing.JFrame {
     }
     public void Verificar_Balls(){
         if(partida.getBalls() == 4){
+            jogadores[getPitcher_Do_Inning()].setN_Walks_Pitcher_1();
             partida.setZerarBalls();
             if(Equipe_Def == 0){
-                Batida_Equipe0();
+                Batida_Equipe1();
             }
             else if(Equipe_Def == 1){
-                Batida_Equipe1();
+                Batida_Equipe0();
             }
         }
     }
@@ -387,26 +401,40 @@ public class Partida extends javax.swing.JFrame {
             Zerar_Variaveis();
             
             if(Equipe_Def == 0){
-                Bater_Equipe1();
+                Bater_Equipe0();
             }
             else if (Equipe_Def == 1){
-                Bater_Equipe0();
+                Bater_Equipe1();
             }
         }
     }
     public void Verificar_Strikes(){
         if(partida.getStrikes() == 3){
+            jogadores[getPitcher_Do_Inning()].setN_Strikes_Outs_1();
             partida.setZerarStrikes();
             partida.setOuts();
-            if(Equipe_Def == 1){
+            if(Equipe_Def == 0){
                 Eliminar_Batedor_Equipe1();
                 setProximo_Batedor_Equipe1();
             }
-            else if (Equipe_Def == 0){
+            else if (Equipe_Def == 1){
                 Eliminar_Batedor_Equipe0();
                 setProximo_Batedor_Equipe0();
             }
             Verificar_Outs();
+        }
+    }
+    public void setDead_Ball(){
+        jogadores[getPitcher_Do_Inning()].setN_Arremessos_1(); 
+        jogadores[getPitcher_Do_Inning()].setN_Dead_Balls_1();
+        partida.setZerarBalls();
+        if(Equipe_Def == 0){
+            jogadores[partida.getAtacador_Equipe1()].setHPB();
+            Batida_Equipe1();
+        }
+        else if(Equipe_Def == 1){
+            jogadores[partida.getAtacador_Equipe0()].setHPB();
+            Batida_Equipe0();
         }
     }
     public String[] getTipos_Jogadas() {
@@ -414,6 +442,7 @@ public class Partida extends javax.swing.JFrame {
         Tipos_Jogadas[1] = "Batida";
         Tipos_Jogadas[2] = "Defesa";
         Tipos_Jogadas[3] = "Falha";
+        Tipos_Jogadas[4] = "Ação";
         return Tipos_Jogadas;
     }
     public void Msg_Tipo(String m){
@@ -435,8 +464,7 @@ public class Partida extends javax.swing.JFrame {
                     Atualizar_Pontuacao();
                 } 
             }
-        }
-         
+        }        
     }
     public String[] getTipos_Arremessos(){
         Tipos_Arremessos[0] = "Strike";
@@ -508,8 +536,7 @@ public class Partida extends javax.swing.JFrame {
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
             setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador(), partida.getAtacador_Equipe0());
         }
-        else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == true){
-            
+        else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == true){          
             //JOGADOR TERCEIRA BASE FEZ PONTO
             partida.setPontuacao_Equipe0();
             Atualizar_Pontuacao();
@@ -625,10 +652,10 @@ public class Partida extends javax.swing.JFrame {
             jo4.setLocation(AUX4, AUY4); 
             if(AUX4 >= X_Home && AUY4 >= Y_Home){
                 t4.stop();
-                if(Equipe_Def == 0){
+                if(Equipe_Def == 1){
                     jo4.setLocation(jogadores[partida.getAtacador_Equipe0()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe0()].getPosicao_y_Ataque());
                 }
-                else if(Equipe_Def == 1){
+                else if(Equipe_Def == 0){
                     jo4.setLocation(jogadores[partida.getAtacador_Equipe1()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe1()].getPosicao_y_Ataque());
                 }
                 
@@ -638,7 +665,6 @@ public class Partida extends javax.swing.JFrame {
         this.t4 = new Timer(10, acao4);  
         this.t4.start();
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -662,6 +688,11 @@ public class Partida extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel_Qt_Outs = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -710,12 +741,14 @@ public class Partida extends javax.swing.JFrame {
         jButton_Finalizar = new javax.swing.JButton();
         jButton_Comecar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -750,7 +783,7 @@ public class Partida extends javax.swing.JFrame {
                         .addComponent(jLabel_Equipe2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Pontuacao2)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -768,7 +801,7 @@ public class Partida extends javax.swing.JFrame {
         );
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel3.setBackground(new java.awt.Color(255, 51, 51));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -803,7 +836,7 @@ public class Partida extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Qt_Balls)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -821,7 +854,7 @@ public class Partida extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel4.setBackground(new java.awt.Color(255, 51, 51));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -845,7 +878,7 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Qt_Outs)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -855,7 +888,64 @@ public class Partida extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel_Qt_Outs))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+
+        jLabel5.setBackground(new java.awt.Color(255, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Pitcher");
+        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jButton2.setText("Strike");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Ball");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Dead");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -867,7 +957,8 @@ public class Partida extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -879,7 +970,9 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Princial", jPanel2);
@@ -888,7 +981,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGap(0, 235, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -900,7 +993,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         jPanel6.setBackground(new java.awt.Color(0, 153, 255));
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jLabel_JogadorDetalhes_1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel_JogadorDetalhes_1.setText("jLabel3");
@@ -975,7 +1068,7 @@ public class Partida extends javax.swing.JFrame {
         jPanel6.setBounds(0, 0, 215, 240);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jLabel_JogadorDetalhes_21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel_JogadorDetalhes_21.setText("jLabel3");
@@ -1051,7 +1144,7 @@ public class Partida extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Jogadores", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 560));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 560));
 
         jPanel_Campo.setLayout(null);
 
@@ -1236,7 +1329,7 @@ public class Partida extends javax.swing.JFrame {
         jJogador24.setBounds(610, 270, 50, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baseball/fundo_baseball_1.jpg"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel_Campo.add(jLabel2);
         jLabel2.setBounds(130, 0, 404, 404);
 
@@ -1288,7 +1381,25 @@ public class Partida extends javax.swing.JFrame {
         jPanel_Campo.add(jButton1);
         jButton1.setBounds(550, 70, 100, 23);
 
-        getContentPane().add(jPanel_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 670, 560));
+        jButton5.setText("Exibir Pitcher");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel_Campo.add(jButton5);
+        jButton5.setBounds(550, 100, 120, 23);
+
+        jButton6.setText("Jogadas");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel_Campo.add(jButton6);
+        jButton6.setBounds(550, 130, 90, 23);
+
+        getContentPane().add(jPanel_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 690, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1298,16 +1409,12 @@ public class Partida extends javax.swing.JFrame {
         this.partida = partida;
         partida.setAtacador_Equipe0();
         partida.setAtacador_Equipe1();
+
         if(this.Equipe_Defesa == null ? equipes[0].getNome_Equipe() == null : this.Equipe_Defesa.equals(equipes[0].getNome_Equipe())){
-            
-            Defender_Equipe1();
             Bater_Equipe1();
-            Equipe_Def = 1;
         }
         else{
-            Defender_Equipe0();
             Bater_Equipe0();
-            Equipe_Def = 0;
         }
         timer.restart();
     }//GEN-LAST:event_jButton_ComecarActionPerformed
@@ -1421,8 +1528,47 @@ public class Partida extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jogadores[getPitcher_Do_Inning()].setN_Arremessos_1();
+        jogadores[getPitcher_Do_Inning()].setN_Strikes_1();
+        partida.setStrikes();
+        Verificar_Strikes();
+        Atualizar_Pontuacao();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        JOptionPane.showMessageDialog(null, "Nº Arremessos: "+jogadores[getPitcher_Do_Inning()].getN_Arremessos()+
+                "\n Nº Strikes: "+jogadores[getPitcher_Do_Inning()].getN_Strikes()+
+                "\n Nº Balls: "+jogadores[getPitcher_Do_Inning()].getN_Balls()+
+                "\n Nº Strike Outs: "+jogadores[getPitcher_Do_Inning()].getN_Strikes_Outs()+
+                "\n Nº Dead Balls: "+jogadores[getPitcher_Do_Inning()].getN_Dead_Balls());
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jogadores[getPitcher_Do_Inning()].setN_Arremessos_1();
+        jogadores[getPitcher_Do_Inning()].setN_Balls_1();
+        partida.setBalls();
+        Verificar_Balls();
+        Atualizar_Pontuacao();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        setDead_Ball();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Jogadas jogada = new Jogadas(partida,jogadores,this);
+        jogada.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton_Comecar;
     private javax.swing.JButton jButton_Finalizar;
     private javax.swing.JButton jButton_Pausar;
@@ -1449,6 +1595,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1478,6 +1625,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Qt_Outs;
     private javax.swing.JLabel jLabel_Qt_Strikes;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

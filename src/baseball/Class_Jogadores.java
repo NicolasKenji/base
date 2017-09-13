@@ -33,37 +33,65 @@ public class Class_Jogadores {
     private double N_Rebatidas_Duplas;
     private double N_Rebatidas_Triplas;
     private double N_Rebatidas_HR;
-    private double AB;
-    private double HIT;
-    private double BB;
-    private double HPB;
-    private double SF;
-    private double OBP;
-    private double Total_Bases;
+    private int N_Strikes_Outs;
+    private int N_Walks_Pitcher;
+    private int N_Dead_Balls;
+    private double AB; //IDAS AO BAT
+    private double HIT; //BATIDAS VALIDAS
+    private double BB; //WALK
+    private double HPB; //BOLADA DO PITCHER
+    private double SF; //BATIDAS DE SACRIFICIO
+    private double OBP; // PORCENTAGEM ON BASE
+    private double Total_Bases; //EMPURRADAS DE BASES COM BATIDA
     private double SLG;
+
+    public int getN_Dead_Balls() {
+        return N_Dead_Balls;
+    }
+
+    public void setN_Dead_Balls_1() {
+        this.N_Dead_Balls++;
+    }
+
+    
+    public int getN_Strikes_Outs() {
+        return N_Strikes_Outs;
+    }
+
+    public void setN_Strikes_Outs_1() {
+        this.N_Strikes_Outs++;
+    }
+
+    public int getN_Walks_Pitcher() {
+        return N_Walks_Pitcher;
+    }
+
+    public void setN_Walks_Pitcher_1() {
+        this.N_Walks_Pitcher++;
+    }
 
     public double getN_Arremessos() {
         return N_Arremessos;
     }
 
-    public void setN_Arremessos(double N_Arremessos) {
-        this.N_Arremessos = N_Arremessos;
+    public void setN_Arremessos_1() {
+        this.N_Arremessos++;
     }
 
     public double getN_Strikes() {
         return N_Strikes;
     }
 
-    public void setN_Strikes(double N_Strikes) {
-        this.N_Strikes = N_Strikes;
+    public void setN_Strikes_1() {
+        this.N_Strikes++;
     }
 
     public double getN_Balls() {
         return N_Balls;
     }
 
-    public void setN_Balls(double N_Balls) {
-        this.N_Balls = N_Balls;
+    public void setN_Balls_1() {
+        this.N_Balls++;
     }
 
     public double getN_Rebatidas_Simples() {
@@ -126,8 +154,8 @@ public class Class_Jogadores {
         return HPB;
     }
 
-    public void setHPB(double HPB) {
-        this.HPB = HPB;
+    public void setHPB() {
+        this.HPB++;
     }
 
     public double getSF() {
