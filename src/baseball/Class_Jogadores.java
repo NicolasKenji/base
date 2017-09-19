@@ -98,8 +98,8 @@ public class Class_Jogadores {
         return N_Rebatidas_Simples;
     }
 
-    public void setN_Rebatidas_Simples(double N_Rebatidas_Simples) {
-        this.N_Rebatidas_Simples = N_Rebatidas_Simples;
+    public void setN_Rebatidas_Simples_1() {
+        this.N_Rebatidas_Simples++;
     }
 
     public double getN_Rebatidas_Duplas() {
