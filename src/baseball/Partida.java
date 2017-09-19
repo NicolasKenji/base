@@ -9,11 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class Partida extends javax.swing.JFrame {
-    public String[] Tipos_Jogadas = new String[5];
-    public String[] Tipos_Arremessos = new String[3];
     private Class_Partida partida;
     private Class_Jogadores[] jogadores;
-    private String Equipe_Defesa;
     private Class_Equipes[] equipes;
     private int X_Home = 340;
     private int Y_Home = 330;
@@ -26,6 +23,7 @@ public class Partida extends javax.swing.JFrame {
     private boolean Primeira_Base_Cheia = false;
     private boolean Segunda_Base_Cheia = false;
     private boolean Terceira_Base_Cheia = false;
+    private int Batedor;
     private int Batedor_Primeira_Base;
     private int Batedor_Segunda_Base;
     private int Batedor_Terceira_Base;
@@ -59,18 +57,16 @@ public class Partida extends javax.swing.JFrame {
     public int getPitcher_Do_Inning(){
         return this.Pitcher_Do_Inning;
     }
-    public Partida(Class_Jogadores[] jogadores, Class_Equipes[] equipes, String Defesa) {
+    public Partida(Class_Jogadores[] jogadores, Class_Equipes[] equipes, int Defesa) {
         initComponents();
         this.df = new DecimalFormat("0.000");
         this.jogadores = jogadores;
         this.equipes = equipes;
-        this.Equipe_Defesa = Defesa;
+        this.Equipe_Def = Defesa;
         this.setLocationRelativeTo(null);
         Setar_Labels();
         jLabel_Equipe1.setText(equipes[0].getNome_Equipe());
         jLabel_Equipe2.setText(equipes[1].getNome_Equipe());  
-        combo_tipos = new JComboBox<>(getTipos_Jogadas());
-        combo_arremessos = new JComboBox<>(getTipos_Arremessos());
         iniciarContagem();
         stopTime();
     }
@@ -358,24 +354,6 @@ public class Partida extends javax.swing.JFrame {
             }  
         }
     }
-    public void Defender_Equipe0(){
-    Equipe_Def = 0;
-    for(int i=0;i<=8;i++){
-        jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
-        if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
-            setPitcher_Do_Inning(i);
-        }
-    }
-}
-    public void Defender_Equipe1(){
-        Equipe_Def = 1;
-        for(int i=9;i<=17;i++){
-            jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
-            if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
-            setPitcher_Do_Inning(i);     
-        }
-        }
-    }
     public void Atualizar_Pontuacao(){
         jLabel_Pontuacao1.setText(Integer.toString(partida.getPontuacao_Equipe0())); 
         jLabel_Pontuacao2.setText(Integer.toString(partida.getPontuacao_Equipe1())); 
@@ -385,27 +363,17 @@ public class Partida extends javax.swing.JFrame {
     }
     public void Verificar_Balls(){
         if(partida.getBalls() == 4){
-            jogadores[getPitcher_Do_Inning()].setN_Walks_Pitcher_1();
-            partida.setZerarBalls();
-            if(Equipe_Def == 0){
-                Batida_Equipe1();
-            }
-            else if(Equipe_Def == 1){
-                Batida_Equipe0();
+            if(setProxima_Base(this.Batedor)){
+                jogadores[getPitcher_Do_Inning()].setN_Walks_Pitcher_1();
+                partida.setZerarBalls();
             }
         }
     }
     public void Verificar_Outs(){
         if(partida.getOuts() == 3){
             partida.setZerarOuts();
-            Zerar_Variaveis();
-            
-            if(Equipe_Def == 0){
-                Bater_Equipe0();
-            }
-            else if (Equipe_Def == 1){
-                Bater_Equipe1();
-            }
+            Zerar_Variaveis();     
+            Alterar_Defesa();
         }
     }
     public void Verificar_Strikes(){
@@ -413,14 +381,8 @@ public class Partida extends javax.swing.JFrame {
             jogadores[getPitcher_Do_Inning()].setN_Strikes_Outs_1();
             partida.setZerarBalls();
             partida.setOuts();
-            if(Equipe_Def == 0){
-                Eliminar_Batedor_Equipe1();
-                setProximo_Batedor_Equipe1();
-            }
-            else if (Equipe_Def == 1){
-                Eliminar_Batedor_Equipe0();
-                setProximo_Batedor_Equipe0();
-            }
+            Eliminar_Batedor_Equipe();
+            setProximo_Batedor();
             Verificar_Outs();
         }
     }
@@ -438,79 +400,19 @@ public class Partida extends javax.swing.JFrame {
         }
         Atualizar_Pontuacao();
     }
-    public String[] getTipos_Jogadas() {
-        Tipos_Jogadas[0] = "Arremesso";
-        Tipos_Jogadas[1] = "Batida";
-        Tipos_Jogadas[2] = "Defesa";
-        Tipos_Jogadas[3] = "Falha";
-        Tipos_Jogadas[4] = "Ação";
-        return Tipos_Jogadas;
-    }
-    public void Msg_Tipo(String m){
-        if("Arremesso".equals(m)){
-            String[] escolha = { "Confirmar", "Cancelar"};
-            String title = "Escolha a jogada";
-            int selecao =  JOptionPane.showOptionDialog(null, combo_arremessos, title,
-            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, escolha, escolha[0]);  
-
-            if(selecao == 0){
-                if(combo_arremessos.getSelectedItem() == Tipos_Arremessos[0]){
-                    partida.setStrikes();
-                    Verificar_Strikes();
-                    Atualizar_Pontuacao();
-                }  
-                else if(combo_arremessos.getSelectedItem() == Tipos_Arremessos[1]){
-                    partida.setBalls();
-                    Verificar_Balls();
-                    Atualizar_Pontuacao();
-                } 
-            }
-        }        
-    }
-    public String[] getTipos_Arremessos(){
-        Tipos_Arremessos[0] = "Strike";
-        Tipos_Arremessos[1] = "Ball";
-        Tipos_Arremessos[2] = "Dead Ball";
-        
-        return Tipos_Arremessos;
-    }
-    public void Bater_Equipe0(){
-        Defender_Equipe1();
-        for(int i=0;i<9;i++){
-            jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Ataque(), jogadores[i].getPosicao_y_Ataque());
-        }
-        jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(X_Home, Y_Home);
-    }
-    public void Bater_Equipe1(){
-        Defender_Equipe0();
-        for(int i=9;i<18;i++){
-            jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Ataque(), jogadores[i].getPosicao_y_Ataque());
-        }
-        jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(X_Home, Y_Home);
-    } 
-    public void Input_Msg(int j){
-        String[] escolha = { "Confirmar", "Cancelar"};
-        String title = "Escolha a jogada";
-        int selecao =  JOptionPane.showOptionDialog(null, combo_tipos, title,
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, escolha, escolha[0]);  
-
-        if(selecao == 0){  
-            Msg_Tipo((String) combo_tipos.getSelectedItem());
-        }
-    }   
     public void Batida_Equipe1(){
         if(Primeira_Base_Cheia == false){
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador(), partida.getAtacador_Equipe1());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador());
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == false){
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador(), partida.getAtacador_Equipe1());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador());
             
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == false){
             setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador(), partida.getAtacador_Equipe1());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador());
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == true){
             partida.setPontuacao_Equipe1();
@@ -518,24 +420,24 @@ public class Partida extends javax.swing.JFrame {
             setHome_Base_Equipe(jogadores[Batedor_Terceira_Base].getLabel_jogador());
             setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador(), partida.getAtacador_Equipe1());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe1()].getLabel_jogador());
         }
         partida.setAtacador_Equipe1();
         jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(X_Home, Y_Home);
     }
     public void Batida_Equipe0(){
         if(Primeira_Base_Cheia == false){
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador(), partida.getAtacador_Equipe0());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador());
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == false){
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador(), partida.getAtacador_Equipe0());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador());
             
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == false){
             setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador(), partida.getAtacador_Equipe0());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador());
         }
         else if(Primeira_Base_Cheia == true && Segunda_Base_Cheia == true && Terceira_Base_Cheia == true){          
             //JOGADOR TERCEIRA BASE FEZ PONTO
@@ -544,44 +446,49 @@ public class Partida extends javax.swing.JFrame {
             setHome_Base_Equipe(jogadores[Batedor_Terceira_Base].getLabel_jogador());
             setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
             setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
-            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador(), partida.getAtacador_Equipe0());
+            setPrimeira_Base_Equipe(jogadores[partida.getAtacador_Equipe0()].getLabel_jogador());
         }
         partida.setAtacador_Equipe0();
         jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(X_Home, Y_Home);
     }
-    public void Eliminar_Batedor_Equipe1(){
-        jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(jogadores[partida.getAtacador_Equipe1()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe1()].getPosicao_y_Ataque());
+    public void Eliminar_Batedor_Equipe(){  
+        if(Equipe_Def == 0){
+            jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(jogadores[partida.getAtacador_Equipe1()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe1()].getPosicao_y_Ataque());
+        }
+        else if (Equipe_Def == 1){
+            jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(jogadores[partida.getAtacador_Equipe0()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe0()].getPosicao_y_Ataque());
+        }
     }
-    public void Eliminar_Batedor_Equipe0(){
-    jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(jogadores[partida.getAtacador_Equipe0()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe0()].getPosicao_y_Ataque());
+    public void setProximo_Batedor(){
+        if(Equipe_Def == 0){
+            partida.setAtacador_Equipe1();
+            jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(X_Home, Y_Home);
+            this.Batedor = partida.getAtacador_Equipe1();
+        }
+        else if (Equipe_Def == 1){
+            partida.setAtacador_Equipe0();
+            jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(X_Home, Y_Home);
+            this.Batedor = partida.getAtacador_Equipe0();
+        }
     }
-    public void setProximo_Batedor_Equipe0(){
-        partida.setAtacador_Equipe0();
-        jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(X_Home, Y_Home);
-    }
-    public void setProximo_Batedor_Equipe1(){
-        partida.setAtacador_Equipe1();
-        jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(X_Home, Y_Home);
-    }
-    private void setPrimeira_Base_Equipe(JLabel jo1, int batedor) {
+    private void setPrimeira_Base_Equipe(JLabel jo1) {
         Primeira_Base_Cheia = true;
-        Batedor_Primeira_Base = batedor;
+        Batedor_Primeira_Base = Batedor;
         AUX = X_Home;
         AUY = Y_Home;
         ActionListener acao = new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            
-            if(AUX < X_Primeira_Base){
-                AUX++;
-            }
-            if(AUY > Y_Primeira_Base){
-                AUY--;
-            }
-            
-            jo1.setLocation(AUX, AUY); 
-            if(AUX >= X_Primeira_Base && AUY <= Y_Primeira_Base){
-                t.stop();
-            }
+                if(AUX < X_Primeira_Base){
+                    AUX++;
+                }
+                if(AUY > Y_Primeira_Base){
+                    AUY--;
+                }
+
+                jo1.setLocation(AUX, AUY); 
+                if(AUX >= X_Primeira_Base && AUY <= Y_Primeira_Base){
+                    t.stop();
+                }
             }  
         };  
         this.t = new Timer(10, acao);  
@@ -589,23 +496,22 @@ public class Partida extends javax.swing.JFrame {
     }
     private void setSegunda_Base_Equipe(JLabel jo2) {
         Segunda_Base_Cheia = true;
+        Primeira_Base_Cheia = false;
         Batedor_Segunda_Base = Batedor_Primeira_Base;
         AUX2 = X_Primeira_Base;
         AUY2 = Y_Primeira_Base;
         ActionListener acao2 = new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            
-            if(AUX2 > X_Segunda_Base){
-                AUX2--;
-            }
-            if(AUY2 > Y_Segunda_Base){
-                AUY2--;
-            }
-            
-            jo2.setLocation(AUX2, AUY2); 
-            if(AUX2 <= X_Segunda_Base && AUY2 <= Y_Segunda_Base){
-                t2.stop();
-            }
+                if(AUX2 > X_Segunda_Base){
+                    AUX2--;
+                }
+                if(AUY2 > Y_Segunda_Base){
+                    AUY2--;
+                }
+                jo2.setLocation(AUX2, AUY2); 
+                if(AUX2 <= X_Segunda_Base && AUY2 <= Y_Segunda_Base){
+                    t2.stop();
+                }
             }  
         };  
         this.t2 = new Timer(10, acao2);  
@@ -613,23 +519,24 @@ public class Partida extends javax.swing.JFrame {
     }
     private void setTerceira_Base_Equipe(JLabel jo3) {
         Terceira_Base_Cheia = true;
+        Primeira_Base_Cheia = false;
+        Segunda_Base_Cheia = false;
         Batedor_Terceira_Base = Batedor_Segunda_Base;
         AUX3 = X_Segunda_Base;
         AUY3 = Y_Segunda_Base;
         ActionListener acao3 = new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            
-            if(AUX3 > X_Terceira_Base){
-                AUX3--;
-            }
-            if(AUY3 < Y_Terceira_Base){
-                AUY3++;
-            }
-            
-            jo3.setLocation(AUX3, AUY3); 
-            if(AUX3 <= X_Terceira_Base && AUY3 >= Y_Terceira_Base){
-                t3.stop();
-            }
+                if(AUX3 > X_Terceira_Base){
+                    AUX3--;
+                }
+                if(AUY3 < Y_Terceira_Base){
+                    AUY3++;
+                }
+
+                jo3.setLocation(AUX3, AUY3); 
+                if(AUX3 <= X_Terceira_Base && AUY3 >= Y_Terceira_Base){
+                    t3.stop();
+                }
             }  
         };  
         this.t3 = new Timer(10, acao3);  
@@ -637,19 +544,19 @@ public class Partida extends javax.swing.JFrame {
     }
     private void setHome_Base_Equipe(JLabel jo4) {
         Terceira_Base_Cheia = true;
+        Primeira_Base_Cheia = false;
+        Segunda_Base_Cheia = false;
         Batedor_Terceira_Base = Batedor_Segunda_Base;
         AUX4 = X_Terceira_Base;
         AUY4 = Y_Terceira_Base;
         ActionListener acao4 = new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            
             if(AUX4 < X_Home){
                 AUX4++;
             }
             if(AUY4 < Y_Home){
                 AUY4++;
             }
-            
             jo4.setLocation(AUX4, AUY4); 
             if(AUX4 >= X_Home && AUY4 >= Y_Home){
                 t4.stop();
@@ -658,13 +565,133 @@ public class Partida extends javax.swing.JFrame {
                 }
                 else if(Equipe_Def == 0){
                     jo4.setLocation(jogadores[partida.getAtacador_Equipe1()].getPosicao_X_Ataque(), jogadores[partida.getAtacador_Equipe1()].getPosicao_y_Ataque());
-                }
-                
+                } 
             }
             }  
         };  
         this.t4 = new Timer(10, acao4);  
         this.t4.start();
+    }
+    public boolean Verificar_Primeira_Base(){
+        return this.Primeira_Base_Cheia;
+    }
+    public boolean Verificar_Segunda_Base(){
+        return this.Segunda_Base_Cheia;
+    }
+    public boolean Verificar_Terceira_Base(){
+        return this.Terceira_Base_Cheia;
+    }
+    public void setRebatida_Simples(){
+        partida.setZerarBalls();
+        if(Equipe_Def == 0){
+            jogadores[partida.getAtacador_Equipe1()].setN_Rebatidas_Simples_1();
+            Batida_Equipe1();
+        }
+        else if(Equipe_Def == 1){
+            jogadores[partida.getAtacador_Equipe0()].setN_Rebatidas_Simples_1();
+            Batida_Equipe0();
+        }
+        Atualizar_Pontuacao();
+    }
+    public boolean setProxima_Base(int i){
+        if(i == Batedor){
+            if(Verificar_Primeira_Base()){
+                JOptionPane.showMessageDialog(null, "A 1ª base destino está ocupada, avance ela primeiro.");
+            }
+            else{
+                setPrimeira_Base_Equipe(jogadores[Batedor].getLabel_jogador());
+                setProximo_Batedor();
+                return true;
+            }
+        }
+        else if(i == Batedor_Primeira_Base){
+            if(Verificar_Segunda_Base()){
+                JOptionPane.showMessageDialog(null, "A 2ª base destino está ocupada, avance ela primeiro.");
+            }
+            else{
+                setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
+                return true;
+            }
+        }
+        else if(i == Batedor_Segunda_Base){
+            if(Verificar_Terceira_Base()){
+                JOptionPane.showMessageDialog(null, "A 3ª base destino está ocupada, avance ela primeiro.");
+            }
+            else{
+                setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
+                return true;
+            }
+        }
+        else if(i == Batedor_Terceira_Base){
+            setTerceira_Base_Equipe(jogadores[Batedor_Terceira_Base].getLabel_jogador());
+            return true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Jogador não está em nenhuma base.");
+            
+        }
+        return false;
+    }
+    public void setRoubo_Base(int i){
+        if(i == Batedor){
+            JOptionPane.showMessageDialog(null, "Jogador não está em base possivel de ser roubada.");
+        }
+        else if(i == Batedor_Primeira_Base){
+            if(Verificar_Segunda_Base()){
+                JOptionPane.showMessageDialog(null, "A 2ª base destino está ocupada, avance ela primeiro.");
+            }
+            else{
+                setSegunda_Base_Equipe(jogadores[Batedor_Primeira_Base].getLabel_jogador());
+                Batedor_Primeira_Base = -1;
+            }
+        }
+        else if(i == Batedor_Segunda_Base){
+            if(Verificar_Terceira_Base()){
+                JOptionPane.showMessageDialog(null, "A 3ª base destino está ocupada, avance ela primeiro.");
+            }
+            else{
+                setTerceira_Base_Equipe(jogadores[Batedor_Segunda_Base].getLabel_jogador());
+                Batedor_Segunda_Base = -1;
+            }
+        }
+        else if(i == Batedor_Terceira_Base){
+            setHome_Base_Equipe(jogadores[Batedor_Terceira_Base].getLabel_jogador());
+            Batedor_Terceira_Base = -1;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Jogador não está em nenhuma base.");
+        }
+    }
+    public void Alterar_Defesa(){
+        if(this.Equipe_Def == 1){
+        Equipe_Def = 0;
+        for(int i=0;i<=8;i++){
+            jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
+            if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
+                setPitcher_Do_Inning(i);
+            }
+        }
+        for(int i=9;i<18;i++){
+            jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Ataque(), jogadores[i].getPosicao_y_Ataque());
+        }
+        jogadores[partida.getAtacador_Equipe1()].getLabel_jogador().setLocation(X_Home, Y_Home);
+        Batedor = partida.getAtacador_Equipe1();
+        
+        }
+        else if(this.Equipe_Def == 0){
+            Equipe_Def = 1;
+            for(int i=9;i<=17;i++){
+                jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Defesa(), jogadores[i].getPosicao_Y_Defesa());
+                if("PITCHER".equals(jogadores[i].getPosicao_Jogador())){
+                setPitcher_Do_Inning(i);     
+            }
+            }
+            for(int i=0;i<9;i++){
+                jogadores[i].getLabel_jogador().setLocation(jogadores[i].getPosicao_X_Ataque(), jogadores[i].getPosicao_y_Ataque());
+            }
+            jogadores[partida.getAtacador_Equipe0()].getLabel_jogador().setLocation(X_Home, Y_Home);
+            Batedor =  partida.getAtacador_Equipe0();
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -1410,13 +1437,7 @@ public class Partida extends javax.swing.JFrame {
         this.partida = partida;
         partida.setAtacador_Equipe0();
         partida.setAtacador_Equipe1();
-
-        if(this.Equipe_Defesa == null ? equipes[0].getNome_Equipe() == null : this.Equipe_Defesa.equals(equipes[0].getNome_Equipe())){
-            Bater_Equipe1();
-        }
-        else{
-            Bater_Equipe0();
-        }
+        Alterar_Defesa();
         timer.restart();
     }//GEN-LAST:event_jButton_ComecarActionPerformed
 
@@ -1430,103 +1451,103 @@ public class Partida extends javax.swing.JFrame {
 
     private void Jogador1_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador1_Click
         int Jogador = Integer.parseInt(jJogador1.getName());  
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador1_Click
 
     private void Jogado2_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogado2_Click
         int Jogador = Integer.parseInt(jJogador2.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogado2_Click
 
     private void Jogador3_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador3_Click
         int Jogador = Integer.parseInt(jJogador3.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador3_Click
 
     private void Jogador4_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador4_Click
         int Jogador = Integer.parseInt(jJogador4.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador4_Click
 
     private void Jogador5_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador5_Click
         int Jogador = Integer.parseInt(jJogador5.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador5_Click
 
     private void Jogador6_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador6_Click
         int Jogador = Integer.parseInt(jJogador6.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador6_Click
 
     private void Jogador7_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador7_Click
         int Jogador = Integer.parseInt(jJogador7.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador7_Click
 
     private void Jogador8_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador8_Click
         int Jogador = Integer.parseInt(jJogador8.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador8_Click
 
     private void Jogador9_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador9_Click
         int Jogador = Integer.parseInt(jJogador9.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador9_Click
 
     private void Jogador21_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador21_Click
         int Jogador = Integer.parseInt(jJogador21.getName());
-        Input_Msg(Jogador);
+        Jogadas jogada = new Jogadas(Jogador, partida,jogadores,this);
+        jogada.setVisible(true);
     }//GEN-LAST:event_Jogador21_Click
 
     private void Jogador22_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador22_Click
         int Jogador = Integer.parseInt(jJogador22.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador22_Click
 
     private void Jogador23_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador23_Click
         int Jogador = Integer.parseInt(jJogador23.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador23_Click
 
     private void Jogador24_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador24_Click
         int Jogador = Integer.parseInt(jJogador24.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador24_Click
 
     private void Jogador25_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador25_Click
         int Jogador = Integer.parseInt(jJogador25.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador25_Click
 
     private void Jogador26_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador26_Click
         int Jogador = Integer.parseInt(jJogador26.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador26_Click
 
     private void Jogador27_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador27_Click
         int Jogador = Integer.parseInt(jJogador27.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador27_Click
 
     private void Jogador28_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador28_Click
         int Jogador = Integer.parseInt(jJogador28.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador28_Click
 
     private void Jogador29_Click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jogador29_Click
         int Jogador = Integer.parseInt(jJogador29.getName());
-        Input_Msg(Jogador);
+
     }//GEN-LAST:event_Jogador29_Click
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jogadores[0].setAB(10);
-        jogadores[0].setN_Rebatidas_Simples(0);
+        jogadores[0].setN_Rebatidas_Simples_1();
         jogadores[0].setN_Rebatidas_Duplas(0);
         jogadores[0].setN_Rebatidas_Triplas(0);
         jogadores[0].setN_Rebatidas_HR(0);
         
-        JOptionPane.showMessageDialog(null, df.format(jogadores[0].getSLG()));
-        
+        JOptionPane.showMessageDialog(null, df.format(jogadores[0].getSLG())); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1559,7 +1580,7 @@ public class Partida extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Jogadas jogada = new Jogadas(partida,jogadores,this);
+        Jogadas jogada = new Jogadas(21, partida,jogadores,this);
         jogada.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
