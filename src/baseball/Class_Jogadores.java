@@ -29,10 +29,13 @@ public class Class_Jogadores {
     private double N_Arremessos;
     private double N_Strikes;
     private double N_Balls;
+    private double N_Strike_Out_Sofridos;
+    private double N_Eliminacoes_Batida; //Eliminações após rebatida
     private double N_Rebatidas_Simples;
     private double N_Rebatidas_Duplas;
     private double N_Rebatidas_Triplas;
     private double N_Rebatidas_HR;
+    private double N_Roubos_Bases;
     private int N_Strikes_Outs;
     private int N_Walks_Pitcher;
     private int N_Dead_Balls;
@@ -44,6 +47,48 @@ public class Class_Jogadores {
     private double OBP; // PORCENTAGEM ON BASE
     private double Total_Bases; //EMPURRADAS DE BASES COM BATIDA
     private double SLG;
+    private int N_Pontos_Feitos;
+    private int N_Eliminacoes; //Nº DE VEZES QUE O JOGADOR FOI ELIMINADO
+
+    public double getN_Roubos_Bases() {
+        return N_Roubos_Bases;
+    }
+
+    public void setN_Roubos_Bases_1() {
+        this.N_Roubos_Bases++;
+    }
+
+    public double getN_Eliminacoes_Batida() {
+        return N_Eliminacoes_Batida;
+    }
+
+    public void setN_Eliminacoes_Batida_1() {
+        this.N_Eliminacoes_Batida++;
+    }
+
+    public int getN_Pontos_Feitos() {
+        return N_Pontos_Feitos;
+    }
+
+    public void setN_Pontos_Feitos(int N_Pontos_Feitos) {
+        this.N_Pontos_Feitos = N_Pontos_Feitos;
+    }
+    
+    
+    
+    public void setN_Strike_Out_Sofridos_1(){
+        this.N_Strike_Out_Sofridos++;
+    }
+    public double getN_Strike_Out_Sofridos(){
+        return this.N_Strike_Out_Sofridos;
+    }
+    
+    public void setN_Eliminacoes_1(){
+        this.N_Eliminacoes++;
+    }
+    public int getN_Eliminacoes(){
+        return this.N_Eliminacoes;
+    }
 
     public int getN_Dead_Balls() {
         return N_Dead_Balls;
