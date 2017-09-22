@@ -26,7 +26,6 @@ public class Jogadas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.partida = partida;
         this.Jogador = Jogador;
-        
         this.tela = p;
     }
     
@@ -65,6 +64,7 @@ public class Jogadas extends javax.swing.JFrame {
         jrbRoubo_Base = new javax.swing.JRadioButton();
         jButton6 = new javax.swing.JButton();
         jrbJogador_Eliminado = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Escolha a jogada");
@@ -76,7 +76,7 @@ public class Jogadas extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -153,8 +153,7 @@ public class Jogadas extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(125, 11, 711, 140);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 11, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setEnabled(false);
@@ -216,7 +215,7 @@ public class Jogadas extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("Rebatida Eliminado");
+        jLabel3.setText("Rebatida/Eliminado");
 
         buttonGroup1.add(jrbRebatedor_Eliminado);
         jrbRebatedor_Eliminado.setText("Eliminado na Batida");
@@ -254,7 +253,7 @@ public class Jogadas extends javax.swing.JFrame {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +267,7 @@ public class Jogadas extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(20, 160, 350, 240);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 370, 240));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setEnabled(false);
@@ -278,15 +276,14 @@ public class Jogadas extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+            .addGap(0, 176, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel3);
-        jPanel3.setBounds(380, 160, 210, 240);
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 180, 240));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setEnabled(false);
@@ -299,11 +296,10 @@ public class Jogadas extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(607, 157, 185, 240);
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, -1, 240));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setEnabled(false);
@@ -321,6 +317,9 @@ public class Jogadas extends javax.swing.JFrame {
         buttonGroup2.add(jrbJogador_Eliminado);
         jrbJogador_Eliminado.setText("Jogador Eliminado");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Ações");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -329,29 +328,31 @@ public class Jogadas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 66, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbRoubo_Base)
-                            .addComponent(jrbJogador_Eliminado))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jrbJogador_Eliminado)
+                            .addComponent(jLabel4))
+                        .addGap(0, 56, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(7, 7, 7)
                 .addComponent(jrbRoubo_Base)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jrbJogador_Eliminado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel5);
-        jPanel5.setBounds(798, 157, 187, 240);
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -389,14 +390,15 @@ public class Jogadas extends javax.swing.JFrame {
             this.tela.Rebatida_Dupla();
        }
        else if(jrbRebatida_Tripla.isSelected()){
-           
+           //
        }
        else if(jrbRebatida_HR.isSelected()){
-           
+           //
        }
        else if(jrbRebatedor_Eliminado.isSelected()){
-           this.tela.Eliminar_Jogador(Jogador);
-           jogadores[Jogador].setN_Eliminacoes_Batida_1();
+           this.tela.setEliminacao_Batida(this.Jogador);
+           this.tela.Eliminar_Jogador(this.Jogador);
+           tela.setProximo_Batedor();
            JOptionPane.showMessageDialog(null, "Não esqueça também de marcar quem foi que realizou a defesa.");
        }
        else{
@@ -416,7 +418,7 @@ public class Jogadas extends javax.swing.JFrame {
         }
         else if(jrbJogador_Eliminado.isSelected()){
             this.tela.Eliminar_Jogador(this.Jogador);
-            *
+            
         }
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -441,6 +443,7 @@ public class Jogadas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

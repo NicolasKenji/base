@@ -70,8 +70,8 @@ public class Class_Jogadores {
         return N_Pontos_Feitos;
     }
 
-    public void setN_Pontos_Feitos(int N_Pontos_Feitos) {
-        this.N_Pontos_Feitos = N_Pontos_Feitos;
+    public void setN_Pontos_Feitos_1() {
+        this.N_Pontos_Feitos++;
     }
     
     
