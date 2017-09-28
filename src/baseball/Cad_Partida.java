@@ -6,6 +6,7 @@
 package baseball;
 
 import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -833,27 +834,26 @@ public class Cad_Partida extends javax.swing.JFrame {
             }
 
             if(prosseguir == true){
-                Class_Jogadores[] jogadores = new Class_Jogadores[18];
-                jogadores[0] = new Class_Jogadores(jJogador1.getText(), jCamisa_0.getText(), jComboBox0.getSelectedItem().toString(), 1, jEquipe1.getText());
-                jogadores[1] = new Class_Jogadores(jJogador2.getText(), jCamisa_1.getText(), jComboBox1.getSelectedItem().toString(), 2, jEquipe1.getText());
-                jogadores[2] = new Class_Jogadores(jJogador3.getText(), jCamisa_2.getText(), jComboBox2.getSelectedItem().toString(), 3, jEquipe1.getText());
-                jogadores[3] = new Class_Jogadores(jJogador4.getText(), jCamisa_3.getText(), jComboBox3.getSelectedItem().toString(), 4, jEquipe1.getText());
-                jogadores[4] = new Class_Jogadores(jJogador5.getText(), jCamisa_4.getText(), jComboBox4.getSelectedItem().toString(), 5, jEquipe1.getText());
-                jogadores[5] = new Class_Jogadores(jJogador6.getText(), jCamisa_5.getText(), jComboBox5.getSelectedItem().toString(), 6, jEquipe1.getText());
-                jogadores[6] = new Class_Jogadores(jJogador7.getText(), jCamisa_6.getText(), jComboBox6.getSelectedItem().toString(), 7, jEquipe1.getText());
-                jogadores[7] = new Class_Jogadores(jJogador8.getText(), jCamisa_7.getText(), jComboBox7.getSelectedItem().toString(), 8, jEquipe1.getText());
-                jogadores[8] = new Class_Jogadores(jJogador9.getText(), jCamisa_8.getText(), jComboBox8.getSelectedItem().toString(), 9, jEquipe1.getText());
+                ArrayList<Class_Jogadores> jogadores = new ArrayList<Class_Jogadores>();
+                jogadores.add(new Class_Jogadores(jJogador1.getText(), jCamisa_0.getText(), jComboBox0.getSelectedItem().toString(), 1, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador2.getText(), jCamisa_1.getText(), jComboBox1.getSelectedItem().toString(), 2, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador3.getText(), jCamisa_2.getText(), jComboBox2.getSelectedItem().toString(), 3, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador4.getText(), jCamisa_3.getText(), jComboBox3.getSelectedItem().toString(), 4, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador5.getText(), jCamisa_4.getText(), jComboBox4.getSelectedItem().toString(), 5, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador6.getText(), jCamisa_5.getText(), jComboBox5.getSelectedItem().toString(), 6, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador7.getText(), jCamisa_6.getText(), jComboBox6.getSelectedItem().toString(), 7, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador8.getText(), jCamisa_7.getText(), jComboBox7.getSelectedItem().toString(), 8, jEquipe1.getText()));
+                jogadores.add(new Class_Jogadores(jJogador9.getText(), jCamisa_8.getText(), jComboBox8.getSelectedItem().toString(), 9, jEquipe1.getText()));
                 
-                jogadores[9] = new Class_Jogadores(jJogador21.getText(), jCamisa_9.getText(), jComboBox9.getSelectedItem().toString(), 1, jEquipe2.getText());
-                jogadores[10] = new Class_Jogadores(jJogador22.getText(), jCamisa_10.getText(), jComboBox10.getSelectedItem().toString(), 2, jEquipe2.getText());
-                jogadores[11] = new Class_Jogadores(jJogador23.getText(), jCamisa_11.getText(), jComboBox11.getSelectedItem().toString(), 3, jEquipe2.getText());
-                jogadores[12] = new Class_Jogadores(jJogador24.getText(), jCamisa_12.getText(), jComboBox12.getSelectedItem().toString(), 4, jEquipe2.getText());
-                jogadores[13] = new Class_Jogadores(jJogador25.getText(), jCamisa_13.getText(), jComboBox13.getSelectedItem().toString(), 5, jEquipe2.getText());
-                jogadores[14] = new Class_Jogadores(jJogador26.getText(), jCamisa_14.getText(), jComboBox14.getSelectedItem().toString(), 6, jEquipe2.getText());
-                jogadores[15] = new Class_Jogadores(jJogador27.getText(), jCamisa_15.getText(), jComboBox15.getSelectedItem().toString(), 7, jEquipe2.getText());
-                jogadores[16] = new Class_Jogadores(jJogador28.getText(), jCamisa_16.getText(), jComboBox16.getSelectedItem().toString(), 8, jEquipe2.getText());
-                jogadores[17] = new Class_Jogadores(jJogador29.getText(), jCamisa_17.getText(), jComboBox17.getSelectedItem().toString(), 9, jEquipe2.getText());
-                
+                jogadores.add(new Class_Jogadores(jJogador21.getText(), jCamisa_9.getText(), jComboBox9.getSelectedItem().toString(), 1, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador22.getText(), jCamisa_10.getText(), jComboBox10.getSelectedItem().toString(), 2, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador23.getText(), jCamisa_11.getText(), jComboBox11.getSelectedItem().toString(), 3, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador24.getText(), jCamisa_12.getText(), jComboBox12.getSelectedItem().toString(), 4, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador25.getText(), jCamisa_13.getText(), jComboBox13.getSelectedItem().toString(), 5, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador26.getText(), jCamisa_14.getText(), jComboBox14.getSelectedItem().toString(), 6, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador27.getText(), jCamisa_15.getText(), jComboBox15.getSelectedItem().toString(), 7, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador28.getText(), jCamisa_16.getText(), jComboBox16.getSelectedItem().toString(), 8, jEquipe2.getText()));
+                jogadores.add(new Class_Jogadores(jJogador29.getText(), jCamisa_17.getText(), jComboBox17.getSelectedItem().toString(), 9, jEquipe2.getText()));
                 
                 Class_Equipes[] equipes = new Class_Equipes[2];
                 equipes[0] = new Class_Equipes(jEquipe1.getText());

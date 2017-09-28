@@ -5,6 +5,7 @@
  */
 package baseball;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,9 +16,9 @@ public class Jogadas extends javax.swing.JFrame {
 
     Class_Partida partida;
     Partida tela;
-    Class_Jogadores[] jogadores;
+    ArrayList<Class_Jogadores> jogadores;
     int Jogador;
-    public Jogadas(int Jogador,Class_Partida partida, Class_Jogadores[] jogadores, Partida p) {
+    public Jogadas(int Jogador,Class_Partida partida, ArrayList<Class_Jogadores> jogadores, Partida p) {
         initComponents();
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);

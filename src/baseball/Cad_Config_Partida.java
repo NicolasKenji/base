@@ -5,17 +5,19 @@
  */
 package baseball;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PCP
  */
 public class Cad_Config_Partida extends javax.swing.JFrame {
 
-    private Class_Jogadores[] jogadores;
+    private ArrayList<Class_Jogadores> jogadores;
     private Class_Equipes[] equipes;
     private int Tipo_Partida;
     
-    public Cad_Config_Partida(Class_Jogadores[] jogadores, Class_Equipes[] equipes) {
+    public Cad_Config_Partida(ArrayList<Class_Jogadores> jogadores, Class_Equipes[] equipes) {
         initComponents();
         this.jogadores = jogadores;
         this.equipes = equipes;
@@ -28,6 +30,7 @@ public class Cad_Config_Partida extends javax.swing.JFrame {
     public Cad_Config_Partida(){
         initComponents(); 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
