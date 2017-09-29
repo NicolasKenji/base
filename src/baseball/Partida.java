@@ -18,8 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-
-
 public class Partida extends javax.swing.JFrame {
     private Class_Partida partida;
     private ArrayList<Class_Jogadores> jogadores;
@@ -35,6 +33,7 @@ public class Partida extends javax.swing.JFrame {
     private boolean Primeira_Base_Cheia = false;
     private boolean Segunda_Base_Cheia = false;
     private boolean Terceira_Base_Cheia = false;
+    private Class_Jogadores jogador_aux;
     private int Batedor;
     private int Batedor_Primeira_Base;
     private int Batedor_Segunda_Base;
@@ -736,6 +735,7 @@ public class Partida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -782,7 +782,29 @@ public class Partida extends javax.swing.JFrame {
         jLabel_JogadorDetalhes_24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jComboBox4 = new javax.swing.JComboBox<>();
         jPanel_Campo = new javax.swing.JPanel();
         jJogador9 = new javax.swing.JLabel();
         jJogador1 = new javax.swing.JLabel();
@@ -814,6 +836,12 @@ public class Partida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1201,57 +1229,120 @@ public class Partida extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(0, 153, 255));
         jPanel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 209, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
-        );
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PITCHER", "CATCHER", "FIRST BASE", "SECOND BASE", "THIRD BASE", "SHORTSTOP", "LEFT FIELD", "CENTER FIELD", "RIGHT FIELD" }));
+        jPanel11.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 114, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("Substituir:");
+        jPanel11.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Trocar de posição");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 52, -1, -1));
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Entrada de novo jogador");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PITCHER", "CATCHER", "FIRST BASE", "SECOND BASE", "THIRD BASE", "SHORTSTOP", "LEFT FIELD", "CENTER FIELD", "RIGHT FIELD" }));
+        jPanel11.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 122, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Destino:");
+        jPanel11.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 10));
+        jPanel11.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 124, -1));
+
+        jLabel11.setText("Nome:");
+        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel11.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 62, -1));
+
+        jLabel12.setText("Camisa:");
+        jPanel11.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        jButton7.setText("Substituir");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         jPanel12.setBackground(new java.awt.Color(255, 51, 51));
         jPanel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 209, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
-        );
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setText("Entrada de novo jogador");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        jButton8.setText("Substituir");
+        jPanel12.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Destino:");
+        jPanel12.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PITCHER", "CATCHER", "FIRST BASE", "SECOND BASE", "THIRD BASE", "SHORTSTOP", "LEFT FIELD", "CENTER FIELD", "RIGHT FIELD" }));
+        jPanel12.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 122, -1));
+
+        buttonGroup1.add(jRadioButton4);
+        jRadioButton4.setText("Trocar de posição");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 41, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setText("Substituir:");
+        jPanel12.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel13.setText("Camisa:");
+        jPanel12.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel12.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 62, -1));
+
+        jLabel14.setText("Nome:");
+        jPanel12.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jPanel12.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 124, -1));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PITCHER", "CATCHER", "FIRST BASE", "SECOND BASE", "THIRD BASE", "SHORTSTOP", "LEFT FIELD", "CENTER FIELD", "RIGHT FIELD" }));
+        jPanel12.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 114, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGap(238, 238, 238)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Substituição", jPanel4);
@@ -1738,16 +1829,119 @@ public class Partida extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        jLabel10.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel12.setVisible(false);
+        jLabel13.setVisible(false);
+        jLabel14.setVisible(false);
+        jLabel15.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        jTextField1.setVisible(false);
+        jTextField2.setVisible(false);
+        jTextField3.setVisible(false);
+        jTextField4.setVisible(false);    
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        if(jRadioButton4.isSelected()){
+            jLabel15.setVisible(true);
+            jComboBox3.setVisible(true);
+            
+            jTextField3.setVisible(false);
+            jTextField4.setVisible(false);  
+            jLabel13.setVisible(false);
+            jLabel14.setVisible(false);
+        }
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        if(jRadioButton3.isSelected()){
+            jLabel15.setVisible(false);
+            jComboBox3.setVisible(false);
+            
+            jTextField3.setVisible(true);
+            jTextField4.setVisible(true);  
+            jLabel13.setVisible(true);
+            jLabel14.setVisible(true);
+        }
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        if(jRadioButton1.isSelected()){
+            jLabel10.setVisible(true);
+            jComboBox2.setVisible(true);
+            
+            jTextField1.setVisible(false);
+            jTextField2.setVisible(false);  
+            jLabel11.setVisible(false);
+            jLabel12.setVisible(false);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        if(jRadioButton2.isSelected()){
+            jLabel10.setVisible(false);
+            jComboBox2.setVisible(false);
+            
+            jTextField1.setVisible(true);
+            jTextField2.setVisible(true);  
+            jLabel11.setVisible(true);
+            jLabel12.setVisible(true);
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int i, j;
+        if(jRadioButton1.isSelected()){
+            for(i=0;i<8;i++){
+                //ACHAR O JOGADOR 1
+                if(jogadores.get(i).getPosicao_Jogador() == jComboBox1.getSelectedItem()){
+                    jogador_aux = jogadores.get(i);
+                    JOptionPane.showMessageDialog(null, "Nome [0]: "+jogadores.get(i).getNome_Jogador());
+                }
+            }
+            for(j=0;j<8;j++){
+                //ACHAR O JOGADOR 2
+                if(jogadores.get(j).getPosicao_Jogador() == jComboBox2.getSelectedItem()){
+                    jogadores.set(i, jogadores.get(j));
+                    jogadores.set(j, jogador_aux);
+                    JOptionPane.showMessageDialog(null, "Nome [0]: "+jogadores.get(i).getNome_Jogador());
+                }
+            }
+        }
+        else{
+        //    
+        }
+        
+        
+        for(int x=0;x<=8;x++){
+        jogadores.get(x).getLabel_jogador().setLocation(jogadores.get(x).getPosicao_X_Defesa(), jogadores.get(x).getPosicao_Y_Defesa());
+        if("PITCHER".equals(jogadores.get(x).getPosicao_Jogador())){
+            setPitcher_Do_Inning(x);
+        }
+    }
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton_Comecar;
     private javax.swing.JButton jButton_Finalizar;
     private javax.swing.JButton jButton_Pausar;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jCronometro;
     private javax.swing.JLabel jJogador1;
     private javax.swing.JLabel jJogador2;
@@ -1768,6 +1962,13 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JLabel jJogador8;
     private javax.swing.JLabel jJogador9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1775,6 +1976,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Equipe1;
     private javax.swing.JLabel jLabel_Equipe2;
     private javax.swing.JLabel jLabel_JogadorDetalhes_1;
@@ -1813,7 +2015,15 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanel_Campo;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
 }
