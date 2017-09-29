@@ -1893,7 +1893,7 @@ public class Partida extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int i, j;
+        int i=0, j=0;
         if(jRadioButton1.isSelected()){
             for(i=0;i<8;i++){
                 //ACHAR O JOGADOR 1
@@ -1908,6 +1908,7 @@ public class Partida extends javax.swing.JFrame {
                     jogadores.set(i, jogadores.get(j));
                     jogadores.set(j, jogador_aux);
                     JOptionPane.showMessageDialog(null, "Nome [0]: "+jogadores.get(i).getNome_Jogador());
+                    JOptionPane.showMessageDialog(null, "Nome [1]: "+jogadores.get(j).getNome_Jogador());
                 }
             }
         }
